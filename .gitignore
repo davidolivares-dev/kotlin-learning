@@ -1,0 +1,20 @@
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Gradle (future-proof — currently no root Gradle, but Exercism exercises bring their own)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin
+*.class
+
+# macOS
+.DS_Store
+
+# Environment
+.env
