@@ -1,4 +1,4 @@
-# Functions
+# Tour Functions
 
 You can declare your own functions in Kotlin using the `fun` keyword.
 
