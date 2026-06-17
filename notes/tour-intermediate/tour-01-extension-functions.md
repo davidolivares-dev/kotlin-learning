@@ -1,0 +1,112 @@
+# Extension Functions
+
+In software development, you often need to modify a program's behavior without changing the original source code. 
+For example, you might want to add extra functionality to a class from a third-party library.
+
+You can do this by adding __extension functions__ to extend a class. You call extension functions the same way you 
+call member functions of a class, using a period `.`.
+
+Before introducing the complete syntax for extension functions, you need to understand what a __receiver__ is.
+The receiver is what the function is called on. In other words, the receiver is where or with whom the 
+information is shared.
+
+```kotlin
+fun main() {
+    val readOnlyShapes = listOf("triangle", "square", "circle")
+    
+    println("The first item in the list is ${readOnlyShapes.first()}")
+}
+```
+
+In this example, the `main()` function calls the `.first()` function to return the first element in a list. 
+The `.first()` function is called __on__ the `readOnlyShapes` variable, so the `readOnlyShapes` variable 
+is the receiver.
+
+To create an extension function, write the name of the class that you want to extend followed by a `.` and the 
+name of your function. Continue with the rest of the function declaration, including its parameters and return type.
+
+Example:
+
+```kotlin
+fun String.bold(): String = "<b>$this</b>"
+
+fun main() {
+    // "hello" is the receiver
+    println("hello".bold())
+    // <b>hello</b>
+}
+```
+
+In this example:
+
+- `String` is the extended class.
+
+- `bold` is the name of the extension function.
+
+- The `.bold()` extension function's return type is `String`.
+
+- `"hello"`, an instance of `String`, as the receiver.
+
+- The receiver is accessed inside the body by the keyword: `this`.
+
+- A string template (`$`) is used to access the value of `this`.
+
+- The `.bold()` extension function takes a string and returns it in a `<b>` HTML element for bold text.
+
+## Extension-oriented Design
+
+You can define extension functions anywhere, which enables you to create extension-oriented designs.
+These designs separate core functionality from useful but non-essential features, making your code easier
+to read and maintain.
+
+A good example is the `HttpClient` class from the Ktor library, which helps perform network requests. 
+The core of its functionality is a single function `request()`, which takes all the information needed 
+for an HTTP request:
+
+```kotlin
+class HttpClient {
+    fun request(method: String, url: String, headers: Map<String, String>): HttpResponse {
+        // Network code
+    }
+}
+```
+
+In practice, the most popular HTTP requests are GET or POST requests. It makes sense for the library to provide shorter 
+names for these common use cases. However, these don't require writing new network code, only a specific request call. 
+In other words, they are perfect candidates to be defined as separate `.get()` and `.post()` extension functions:
+
+```kotlin
+fun HttpClient.get(url: String): HttpResponse = request("GET", url, emptyMap())
+fun HttpClient.post(url: String): HttpResponse = request("POST", url, emptyMap())
+```
+
+These `.get()` and `.post()` functions extend the `HttpClient` class. They can directly use the `request()` function 
+from the `HttpClient` class because they're called on an instance of the `HttpClient` class as the receiver. 
+You can use these extension functions to call the `request()` function with the appropriate HTTP method, which simplifies your code and makes it easier to understand:
+
+```kotlin
+class HttpClient {
+    fun request(method: String, url: String, headers: Map<String, String>): HttpResponse {
+        println("Requesting $method to $url with headers: $headers")
+        return HttpResponse("Response from $url")
+    }
+}
+
+fun HttpClient.get(url: String): HttpResponse = request("GET", url, emptyMap())
+
+fun main() {
+    val client = HttpClient()
+
+    // Making a GET request using request() directly
+    val getResponseWithMember = client.request("GET", "https://example.com", emptyMap())
+
+    // Making a GET request using the get() extension function
+    // The client instance is the receiver
+    val getResponseWithExtension = client.get("https://example.com")
+}
+```
+
+This extension-oriented approach is widely used in Kotlin's standard library and other libraries. 
+For example, the `String` class has many extension functions to help you work with strings.
+
+
