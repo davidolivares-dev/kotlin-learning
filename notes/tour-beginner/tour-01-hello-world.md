@@ -1,22 +1,38 @@
-# Tour Hello World Notes
+# Tour Hello World
 
-## In Kotlin
+In Kotlin, programs start in the `main()` function. In `.kts` script files `main()` is unnecessary — code runs top-to-bottom like a script.
 
-- `fun` used to declare function
-- `main()` is where program starts
-- `.kts` files run top-to-bottom like a script. `main()` is for compiled `.kt` files.
-- `println()` and `print()` functions print their arguments to standard output and are `top-level functions`
-- `Kotlin` lets you define top-level functions that don't belong to any class; in `Java`, everything must live inside a class
+## Functions
+
+Declare functions with the `fun` keyword. `println()` and `print()` are top-level functions — unlike Java, Kotlin lets you define functions outside of any class.
+
+```kotlin
+fun hello() {
+    println("Hello, world!")
+}
+
+hello()
+// Hello, world!
+```
 
 ## Variables
 
-- Read-only variables `val`
-- Mutable variables `var`
-- `val` is preferred for variables, only use `var` when truly needed
-- If `val` references mutable object only the reference is immutable, object can be modified.
+- `val` — read-only reference (preferred). Only the reference is immutable; a `val` pointing to a mutable object can still have that object modified.
+- `var` — reassignable. Only use when you genuinely need to reassign.
+
+```kotlin
+val name = "Mary"   // immutable reference
+var age = 20        // reassignable
+age = 21            // ok
+```
 
 ## String Templates
 
-- Use template expressions to access data in variables and other objects
-- Template expressions always start with a dollar sign `$`
-- To evaluate code in a template expression place code within curly braces `{}`
+Use `$variable` to embed a value in a string, or `${expression}` to evaluate an expression inline.
+
+```kotlin
+val name = "Mary"
+val age = 20
+println("$name is $age years old")         // Mary is 20 years old
+println("Next year she'll be ${age + 1}")  // Next year she'll be 21
+```
