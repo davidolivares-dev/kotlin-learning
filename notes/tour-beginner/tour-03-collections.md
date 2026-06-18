@@ -8,57 +8,44 @@
 
 ## List
 
-Lists store items in the order that they are added, and allow for duplicate items.
+Lists store items in the order they are added and allow duplicate items.
 
-To create a read-only list (`List`), use the `listOf()` fun.
-
-To create a mutable list (`MutableList`), use the `mutableListOf()` fun.
+- `listOf()` — read-only `List`
+- `mutableListOf()` — mutable `MutableList`
 
 ### List Operations
 
-- Use `[index]` to access an item in the list
-- Use `.first()` and `.last()` functions to get the first and last items in a list
-- Use `.count()` to get the number of items in a list
-  - `.size` is a property – it's stored on the collection
-  - `.count()` and `.size` give the same result, but `.size` is preferred since it's more direct.
-  - Use `.count { }` when you need filtered counting.
-- Use `.add()` and `.remove()` functions to add or remove items from a mutable list
-- To check that an item is in a list use the `in` operator
+- `[index]` — access an item by index
+- `.first()`, `.last()` — get the first or last item
+- `.size` — preferred over `.count()` for simple counts; `.count { }` for filtered counts
+- `.add()`, `.remove()` — add or remove items (mutable only)
+- `in` — check if an item exists in the list
 
 ## Set
 
-Lists are orders and allow duplicate items, sets are `unordered` and only store `unique` items
+Unlike lists, sets are unordered and only store unique items.
 
-To create a read-only set (`Set`), use the `setOf()` fun.
-
-To create a mutable set (`MutableSet`), use the `mutableSetOf()` fun.
+- `setOf()` — read-only `Set`
+- `mutableSetOf()` — mutable `MutableSet`
 
 ### Set Operations
 
-- Use `.count()` to get the number of items in a set
-    - `.size` is a property – it's stored on the collection
-    - `.count()` and `.size` give the same result, but `.size` is preferred since it's more direct.
-    - Use `.count { }` when you need filtered counting.
-- Use `.add()` and `.remove()` functions to add or remove items from a mutable set
-- To check that an item is in a set use the `in` operator
+- `.size` — preferred for simple counts; `.count { }` for filtered counts
+- `.add()`, `.remove()` — add or remove items (mutable only)
+- `in` — check if an item exists in the set
 
 ## Map
 
-Maps store items as key-value pairs. You access the value by referencing the key.
-Maps are useful if you want to look up a value without using a numbered index, like in a list.
+Maps store key-value pairs. You look up a value by its key rather than an index.
 
-To create a read-only map (`Map`), use the `mapOf()` fun.
-
-To create a mutable map (`MutableMap`), use the `mutableMapOf()` fun.
+- `mapOf()` — read-only `Map`
+- `mutableMapOf()` — mutable `MutableMap`
 
 ### Map Operations
 
-- The easiest way to create maps is to use the `to` operator between each key and its value
-- Use `[key]` to access a value in a map or add items to a mutable map
-- Use `.remove()` fun to remove items from a mutable map
-- Use `.count()` to get the number of items in a map
-- Use `.containsKey()` to check if a specific key is already included in a map
-- Use `.keys` or `.values` properties to obtain a collection of the keys or values of a map
-- To check that an item is in a map use the `in` operator
-- `map[key]` returns a nullable value (i.e. `String?`) – if the key doesn't exist it returns `null`
-
+- `to` — create key-value pairs: `mapOf(1 to "one", 2 to "two")`
+- `[key]` — access a value; returns a nullable type (`String?`) — returns `null` if the key doesn't exist
+- `.remove()` — remove an entry (mutable only)
+- `.containsKey()` — check if a key exists
+- `.keys`, `.values` — get a collection of all keys or all values
+- `in` — check if a key exists in the map

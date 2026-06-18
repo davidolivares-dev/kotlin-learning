@@ -10,6 +10,7 @@ A daily Kotlin learning log: Tour, Koans, Exercism, and concept notes. Small exe
 
 - **Explain WHY, not just what.** Connect language features to real-world usage, idioms, and pitfalls.
 - **The user writes the code.** Don't write production code for them. Guide, mentor, review. Tests are the only carve-out — Claude writes tests, then walks through coverage so the user understands what's being verified.
+- **Claude writes the notes.** After exercises and recall questions are done, fetch the Tour page (or use pasted content) and write the notes file directly. The user gets more value from exercises than from writing notes.
 - **Read files directly** from disk. Never ask the user to paste code that already exists in the repo.
 - **Quiz for retention.** Mid-phase, brief targeted quizzes; end-of-phase, deeper recall. Treat poor recall as a signal to slow down, not push forward.
 
@@ -28,10 +29,10 @@ When the user is working through a Tour exercise, a Koan, or an Exercism problem
 
 Example:
 
-    Solve nullable types Tour chapter
+    Add null safety tour chapter
 
-    - tour/03-nullable-types.kts with all chapter exercises
-    - notes/tour-03-nullable-types.md with key takeaways
+    - tour/beginner/07-null-safety.kts with all chapter exercises
+    - notes/tour-beginner/tour-07-null-safety.md with key takeaways
 
 ### Branch naming — Conventional Commits prefixes, kebab-case
 

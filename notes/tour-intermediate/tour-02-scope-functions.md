@@ -1,21 +1,8 @@
-# Scope Functions
+# Tour Scope Functions
 
-In programming, a scope is the area in which your variable or object is recognized. The most commonly referred 
-to scopes are the global scope and the local scope:
+Scope functions create a temporary scope around an object so you can access its properties and functions without repeating its name. Kotlin has five: `let`, `apply`, `run`, `also`, and `with`. Each takes a lambda and returns either the object or the lambda result.
 
-- __Global Scope__ - a variable or object that is accessible from anywhere in the program
-- __Local Scope__ - a variable or object that is only accessible within the block of function where it is defined.
-
-In Kotlin, there are also scope functions that allow you to create a temporary scope around an object 
-and execute some code.
-
-Scope functions make your code more concise because you don't have to refer to the name of your object within
-the temporary scope. Depending on the scope function, you can access the object either by referencing it via the
-keyword `this` or using it as an argument via the keyword `it`.
-
-Kotlin has five scope functions in total: `let`, `apply`, `run`, `also`, and `with`.
-
-Each scope function takes a lambda expression and returns either the object or the result of the lambda expression.
+Inside the lambda, the object is accessed via `this` (treated as the receiver) or `it` (passed as an argument), depending on the function.
 
 ## Let
 
@@ -25,7 +12,7 @@ Use `let` to perform null checks and use the result later. Instead of an `if/els
 val confirm = if (address != null) sendNotification(address) else null
 ```
 
-You can use a safe call with `let`:
+Use a safe call with `let`:
 
 ```kotlin
 val confirm = address?.let {
@@ -33,11 +20,11 @@ val confirm = address?.let {
 }
 ```
 
-The `address` variable is accessed via `it` inside the temporary scope. If `address` is null, the block is skipped entirely.
+The object is accessed via `it`. If `address` is null the block is skipped entirely.
 
 ## Apply
 
-Use `apply` to initialize an object at the time of creation. Instead of configuring an instance across multiple lines later:
+Use `apply` to initialize an object at creation time. Instead of configuring an instance across multiple lines:
 
 ```kotlin
 val client = Client()
@@ -46,7 +33,7 @@ client.connect()
 client.authenticate()
 ```
 
-Group it all at creation time:
+Group it at creation:
 
 ```kotlin
 val client = Client().apply {
@@ -56,11 +43,11 @@ val client = Client().apply {
 }
 ```
 
-Inside the block, `this` refers to the instance so you don't need to prefix each call with `client.`. `apply` returns the object itself.
+The object is accessed via `this` inside the block. `apply` returns the object itself.
 
 ## Run
 
-Similar to `apply`, but use `run` when you want to initialize an object AND immediately compute a result:
+Similar to `apply`, but use `run` when you want to initialize an object and immediately compute a result:
 
 ```kotlin
 val result: String = client.run {
@@ -74,22 +61,22 @@ The last expression in the block is returned as the result.
 
 ## Also
 
-Use `also` to perform a side effect action (like logging) on an object and then continue using the object unchanged. It's useful for inserting logging into a chain without breaking it:
+Use `also` to perform a side-effect action (like logging) and then continue using the object unchanged. Useful for inserting logging into a chain without breaking it:
 
 ```kotlin
 medals
     .map { it.uppercase() }
-    .also { println(it) }   // logs after map
+    .also { println(it) }    // logs after map
     .filter { it.length > 4 }
-    .also { println(it) }   // logs after filter
+    .also { println(it) }    // logs after filter
     .reversed()
 ```
 
-`also` returns the object itself, so the chain continues uninterrupted.
+The object is accessed via `it`. `also` returns the object itself so the chain continues uninterrupted.
 
 ## With
 
-Unlike the other scope functions, `with` is not an extension function — you pass the object as an argument. Use it when you need to call multiple functions on the same object and don't want to repeat its name:
+Unlike the other scope functions, `with` is not an extension function — the object is passed as an argument. Use it when calling multiple functions on the same object to avoid repeating its name:
 
 ```kotlin
 with(canvas) {
@@ -99,7 +86,7 @@ with(canvas) {
 }
 ```
 
-Inside the block, `this` refers to `canvas`.
+The object is accessed via `this` inside the block.
 
 ## Quick Reference
 
