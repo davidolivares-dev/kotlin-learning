@@ -29,6 +29,6 @@ Week 1 is the [Kotlin Tour](https://kotlinlang.org/docs/kotlin-tour-welcome.html
 - For each chapter, create `tour/<section>/NN-chapter-name.kts` (e.g., `tour/beginner/01-hello-world.kts`)
 - **Retype the examples** in IntelliJ. Don't paste. The typing is the practice.
 - Solve the end-of-chapter exercises in the same file
-- After each chapter, write `notes/tour-<section>/tour-NN-chapter-name.md` with 3-5 bullets
+- After each chapter, write `notes/tour-<section>/NN-chapter-name.md` with 3-5 bullets
 
 Once the Tour is complete, switch the daily slot to [Kotlin Koans](https://play.kotlinlang.org/koans). Exercism comes after that.

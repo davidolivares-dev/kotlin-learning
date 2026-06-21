@@ -32,7 +32,7 @@ Example:
     Add null safety tour chapter
 
     - tour/beginner/07-null-safety.kts with all chapter exercises
-    - notes/tour-beginner/tour-07-null-safety.md with key takeaways
+    - notes/tour-beginner/07-null-safety.md with key takeaways
 
 ### Branch naming — Conventional Commits prefixes, kebab-case
 
