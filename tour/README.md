@@ -20,7 +20,7 @@ brew install kotlin
 
 ## After each chapter
 
-Write `notes/tour-<section>/tour-NN-chapter-name.md` with 3-5 bullets:
+Write `notes/tour-<section>/NN-chapter-name.md` with 3-5 bullets:
 
 - What surprised you
 - What still feels shaky
